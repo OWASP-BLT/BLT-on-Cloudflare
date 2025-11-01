@@ -54,8 +54,8 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-// Observe all cards
-document.querySelectorAll('.card, .component-card').forEach(card => {
+// Observe all feature and component cards
+document.querySelectorAll('.bg-white.rounded-xl.shadow-md').forEach(card => {
   card.style.opacity = '0';
   card.style.transform = 'translateY(20px)';
   card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -104,7 +104,7 @@ document.querySelectorAll('a[target="_blank"]').forEach(link => {
 
 // Animate stats counter on scroll
 function animateStats() {
-  const stats = document.querySelectorAll('.stat-value');
+  const stats = document.querySelectorAll('.text-4xl.font-bold.text-red-600');
   
   stats.forEach(stat => {
     const target = parseInt(stat.textContent.replace(/\D/g, ''));
@@ -136,7 +136,7 @@ const statsObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 
-const statsSection = document.querySelector('.stats');
+const statsSection = document.querySelector('.py-12.bg-white');
 if (statsSection) {
   statsObserver.observe(statsSection);
 }
