@@ -1,0 +1,23 @@
+{
+  "name": "blt-on-cloudflare",
+  "version": "1.0.0",
+  "description": "OWASP BLT website running on Cloudflare Workers",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "keywords": [
+    "owasp",
+    "blt",
+    "bug-logging-tool",
+    "cloudflare-workers",
+    "security"
+  ],
+  "author": "OWASP BLT Team",
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
