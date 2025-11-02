@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Bug Logging Tool</title>
+    <meta name="description" content="Welcome to OWASP BLT, a platform to report bugs, earn rewards, and help secure the web through community-driven collaboration.">
+    <meta name="keywords" content="Bug Logging Tool, OWASP, security, bug reporting, rewards, open source, community, web security, contributions">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-gray-900">
+                        <span class="text-red-600">OWASP</span> BLT
+                    </h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-red-600 transition-colors">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-red-600 transition-colors">About</a>
+                    <a href="#features" class="text-gray-700 hover:text-red-600 transition-colors">Features</a>
+                    <a href="#components" class="text-gray-700 hover:text-red-600 transition-colors">Components</a>
+                    <a href="#partners" class="text-gray-700 hover:text-red-600 transition-colors">Partners</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="px-4 py-2 text-red-600 border-2 border-red-600 rounded-lg hover:bg-red-600 hover:text-white transition-colors">
+                        Sign In
+                    </a>
+                    <a href="#" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                        Report Bug
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-red-50 to-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Welcome to <span class="text-red-600">OWASP BLT</span>
+                </h2>
+                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    A platform to report bugs, earn rewards, and help secure the web through community-driven collaboration.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#" class="px-8 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium">
+                        <i class="fas fa-bug mr-2"></i> Report a Bug
+                    </a>
+                    <a href="#" class="px-8 py-3 border-2 border-red-600 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition-colors font-medium">
+                        <i class="fas fa-users mr-2"></i> Join Community
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-red-600 mb-2">10K+</div>
+                    <div class="text-gray-600">Bugs Reported</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-red-600 mb-2">5K+</div>
+                    <div class="text-gray-600">Active Users</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-red-600 mb-2">500+</div>
+                    <div class="text-gray-600">Organizations</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-red-600 mb-2">100+</div>
+                    <div class="text-gray-600">Contributors</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Choose BLT?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    OWASP BLT provides a comprehensive platform for bug reporting and management
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Secure Platform</h3>
+                    <p class="text-gray-600">
+                        Built on OWASP security standards with community-driven development
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-award text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Earn Rewards</h3>
+                    <p class="text-gray-600">
+                        Get points and recognition for valid bug reports and contributions
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Community Driven</h3>
+                    <p class="text-gray-600">
+                        Join a global community of security researchers and developers
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Components Section -->
+    <section id="components" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <div class="flex items-center gap-4">
+                    <i class="fas fa-code-branch text-2xl text-red-600"></i>
+                    <h2 class="text-3xl font-bold">Our Components</h2>
+                </div>
+                <p class="text-gray-600 mt-3">
+                    Four key components power OWASP BLT. The core, mobile access, browser integration, and automation—working together to secure applications worldwide.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Core Card -->
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-shield-alt text-2xl text-red-600"></i>
+                        <h4 class="font-bold text-lg">Django Core</h4>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">The main engine powering OWASP BLT's system API and Slack Bot.</p>
+                    <div class="flex flex-col gap-2">
+                        <a href="https://github.com/OWASP-BLT/BLT" target="_blank" class="inline-flex items-center text-gray-700 border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                            <i class="fab fa-github mr-2"></i>
+                            <i class="fas fa-star text-yellow-400 mr-2"></i> Star
+                        </a>
+                        <a href="#" class="inline-flex items-center justify-center px-3 py-2 text-red-500 border-2 border-red-500 rounded-lg hover:bg-red-500 hover:text-white font-medium transition-colors">
+                            <i class="fas fa-bug mr-2"></i> Report a Bug
+                        </a>
+                    </div>
+                </div>
+                <!-- App Card -->
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-mobile-alt text-2xl text-red-600"></i>
+                        <h4 class="font-bold text-lg">Flutter iOS App</h4>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">Mobile application for on-the-go bug reporting and management.</p>
+                    <div class="flex flex-col gap-2">
+                        <a href="https://github.com/OWASP-BLT/BLT-Flutter" target="_blank" class="inline-flex items-center text-gray-700 border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                            <i class="fab fa-github mr-2"></i>
+                            <i class="fas fa-star text-yellow-400 mr-2"></i> Star
+                        </a>
+                        <a href="#" class="inline-flex items-center justify-center px-3 py-2 text-red-500 border-2 border-red-500 rounded-lg hover:bg-red-500 hover:text-white font-medium transition-colors">
+                            <i class="fas fa-download mr-2"></i> Download
+                        </a>
+                    </div>
+                </div>
+                <!-- Extension Card -->
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-puzzle-piece text-2xl text-red-600"></i>
+                        <h4 class="font-bold text-lg">Chrome Extension</h4>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">Browser extension for quick bug submission directly from your browser.</p>
+                    <div class="flex flex-col gap-2">
+                        <a href="https://github.com/OWASP-BLT/BLT-Extension" target="_blank" class="inline-flex items-center text-gray-700 border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                            <i class="fab fa-github mr-2"></i>
+                            <i class="fas fa-star text-yellow-400 mr-2"></i> Star
+                        </a>
+                        <a href="#" class="inline-flex items-center justify-center px-3 py-2 text-red-500 border-2 border-red-500 rounded-lg hover:bg-red-500 hover:text-white font-medium transition-colors">
+                            <i class="fas fa-download mr-2"></i> Install
+                        </a>
+                    </div>
+                </div>
+                <!-- Action Card -->
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-cogs text-2xl text-red-600"></i>
+                        <h4 class="font-bold text-lg">GitHub Action</h4>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">Automate bug reporting in your CI/CD pipeline with GitHub Actions.</p>
+                    <div class="flex flex-col gap-2">
+                        <a href="https://github.com/OWASP-BLT/BLT-Action" target="_blank" class="inline-flex items-center text-gray-700 border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                            <i class="fab fa-github mr-2"></i>
+                            <i class="fas fa-star text-yellow-400 mr-2"></i> Star
+                        </a>
+                        <a href="#" class="inline-flex items-center justify-center px-3 py-2 text-red-500 border-2 border-red-500 rounded-lg hover:bg-red-500 hover:text-white font-medium transition-colors">
+                            <i class="fas fa-code-branch mr-2"></i> Use Latest
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Partners</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    We're proud to collaborate with leading organizations in the security community
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex flex-col items-center text-center bg-white p-6 rounded-xl">
+                    <div class="w-32 h-32 flex items-center justify-center mb-4">
+                        <i class="fas fa-lock text-6xl text-gray-400"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">OWASP Foundation</h3>
+                    <p class="text-gray-600 text-sm">
+                        BLT is an official OWASP project, adhering to the highest standards of open-source security.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center text-center bg-white p-6 rounded-xl">
+                    <div class="w-32 h-32 flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-6xl text-gray-400"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Sentry</h3>
+                    <p class="text-gray-600 text-sm">
+                        Sentry provides BLT with a free plan for error monitoring and performance tracking.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center text-center bg-white p-6 rounded-xl">
+                    <div class="w-32 h-32 flex items-center justify-center mb-4">
+                        <i class="fab fa-google text-6xl text-gray-400"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Google</h3>
+                    <p class="text-gray-600 text-sm">
+                        Google supports BLT through Google Summer of Code, fostering student contributions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-6">Get Involved</h2>
+            <p class="mb-8 text-gray-600">Join our community and help make the internet a safer place.</p>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+                <a href="https://github.com/OWASP-BLT/BLT" target="_blank" class="px-8 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
+                    <i class="fab fa-github mr-2"></i> View on GitHub
+                </a>
+                <a href="#" class="px-8 py-3 border-2 border-red-600 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition-colors">
+                    <i class="fas fa-book mr-2"></i> Read Documentation
+                </a>
+                <a href="#" class="px-8 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                    <i class="fas fa-heart mr-2"></i> Donate to BLT
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">OWASP BLT</h3>
+                    <p class="text-gray-400 text-sm">
+                        A community-driven bug logging tool for security researchers and developers.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">GitHub</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">API Docs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-slack text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 OWASP Bug Logging Tool. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

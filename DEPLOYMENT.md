@@ -2,46 +2,18 @@
 
 ## Prerequisites
 
-Before deploying to Cloudflare Workers, ensure you have:
+Before deploying to Cloudflare Pages, ensure you have:
 
 1. A Cloudflare account (free tier works)
-2. Wrangler CLI installed and authenticated
-3. Node.js v16+ and npm installed
+2. Node.js v16+ and npm installed
 
-## Setup Wrangler
+## Project Structure
 
-1. Install Wrangler globally (if not already installed):
-```bash
-npm install -g wrangler
-```
+This project is configured to deploy on **Cloudflare Pages** as a static site with the following structure:
 
-2. Login to Cloudflare:
-```bash
-wrangler login
-```
-
-This will open a browser window for authentication.
-
-## Configuration
-
-1. Update `wrangler.toml` with your account details:
-```toml
-name = "blt-on-cloudflare"
-main = "src/index.js"
-compatibility_date = "2024-01-01"
-
-# Optional: Add your account_id and route
-# account_id = "your-account-id"
-# route = "blt.yourdomain.com/*"
-
-[site]
-bucket = "./public"
-```
-
-2. To find your account ID:
-```bash
-wrangler whoami
-```
+- `src/index.js` - Contains the HTML template (for reference/Workers deployment)
+- `public/` - Static assets directory (CSS, JS, and generated HTML)
+- `wrangler.toml` - Cloudflare Pages configuration
 
 ## Local Development
 
@@ -50,153 +22,169 @@ wrangler whoami
 npm install
 ```
 
-2. Start the development server:
+2. Build the static site:
+```bash
+npm run build
+```
+
+This generates `public/index.html` from the template in `src/index.js`.
+
+3. Start the development server:
 ```bash
 npm run dev
 ```
 
 The site will be available at `http://localhost:8787`
 
-## Deployment
+## Cloudflare Pages Deployment
 
-### Deploy to Cloudflare Workers
+### Automatic Deployment (Recommended)
 
-1. Deploy to production:
+1. **Connect Your Repository to Cloudflare Pages:**
+   - Go to [Cloudflare Dashboard](https://dash.cloudflare.com)
+   - Navigate to **Workers & Pages** > **Create application** > **Pages**
+   - Connect your GitHub/GitLab account
+   - Select the `BLT-on-Cloudflare` repository
+
+2. **Configure Build Settings:**
+   - **Build command:** `npm run deploy` (or `npm run build`)
+   - **Build output directory:** `public`
+   - **Root directory:** `/` (leave as default)
+
+3. **Deploy:**
+   - Click **Save and Deploy**
+   - Cloudflare Pages will automatically build and deploy your site
+   - Your site will be available at: `https://blt-on-cloudflare.pages.dev`
+
+### Manual Build
+
+To build locally for testing:
 ```bash
-npm run deploy
+npm run build
 ```
 
-2. Your site will be deployed to a `workers.dev` subdomain by default:
-```
-https://blt-on-cloudflare.<your-subdomain>.workers.dev
-```
+This will generate the `public/index.html` file from the template in `src/index.js`.
 
-### Custom Domain Setup
+## Configuration
 
-1. Add a custom domain in your `wrangler.toml`:
+The `wrangler.toml` file is configured for Cloudflare Pages:
+
 ```toml
-routes = [
-  { pattern = "blt.yourdomain.com", zone_name = "yourdomain.com" }
-]
+name = "blt-on-cloudflare"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "./public"
 ```
 
-2. Add DNS records in Cloudflare:
-   - Go to your domain's DNS settings
-   - Add a CNAME record pointing to your worker
+This tells Cloudflare Pages to serve files from the `./public` directory.
 
-3. Deploy again:
-```bash
-npm run deploy
-```
+## Custom Domain Setup
+
+1. In Cloudflare Pages dashboard, go to your project
+2. Navigate to **Custom domains**
+3. Click **Set up a custom domain**
+4. Enter your domain (e.g., `blt.yourdomain.com`)
+5. Follow the instructions to add DNS records
+
+Cloudflare will automatically provision SSL certificates for your custom domain.
+
+## Environment Variables
+
+If you need to add environment variables for Pages:
+
+1. Go to your project in Cloudflare Pages dashboard
+2. Navigate to **Settings** > **Environment variables**
+3. Add your variables for production and preview environments
 
 ## Monitoring
 
-View your worker logs:
-```bash
-npm run tail
-```
+View your deployment logs and analytics:
 
-Or:
-```bash
-wrangler tail
-```
+1. Go to Cloudflare Pages dashboard
+2. Select your project
+3. View **Deployments** for build logs
+4. View **Analytics** for traffic insights
 
 ## Troubleshooting
 
-### Issue: "No account_id found"
-**Solution**: Add your account_id to `wrangler.toml` or use:
-```bash
-wrangler deploy --account-id=YOUR_ACCOUNT_ID
-```
+### Issue: "wrangler.toml does not appear to be valid"
 
-### Issue: "Failed to publish"
-**Solution**: Ensure you're logged in:
+This warning can be ignored. The build system will use the `pages_build_output_dir` setting and continue with the deployment.
+
+### Issue: Build fails with "Cannot find module"
+
+**Solution**: Ensure all dependencies are listed in `package.json`:
 ```bash
-wrangler login
+npm install
 ```
 
 ### Issue: Static assets not loading
-**Solution**: Verify the `[site]` section in `wrangler.toml`:
+
+**Solution**: Verify your assets are in the `public/` directory:
+```
+public/
+├── index.html
+├── css/
+│   └── styles.css
+└── js/
+    └── main.js
+```
+
+### Issue: Changes to src/index.js not reflected
+
+**Solution**: Remember to rebuild after modifying the template:
+```bash
+npm run build
+```
+
+Then commit the updated `public/index.html`.
+
+## Alternative: Cloudflare Workers Deployment
+
+If you prefer to deploy as a Cloudflare Worker instead of Pages:
+
+1. Restore the Workers configuration in `wrangler.toml`:
 ```toml
+name = "blt-on-cloudflare"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
 [site]
 bucket = "./public"
 ```
 
-## Environment Variables
-
-If you need to add environment variables:
-
-1. Create a `.dev.vars` file for local development:
-```
-API_KEY=your-api-key
-```
-
-2. Add secrets for production:
+2. Login to Cloudflare:
 ```bash
-wrangler secret put API_KEY
+npx wrangler login
 ```
 
-## CI/CD Setup
-
-### GitHub Actions
-
-Create `.github/workflows/deploy.yml`:
-
-```yaml
-name: Deploy to Cloudflare Workers
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    name: Deploy
-    steps:
-      - uses: actions/checkout@v3
-      - name: Deploy to Cloudflare Workers
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+3. Deploy:
+```bash
+npx wrangler deploy
 ```
 
-Add `CLOUDFLARE_API_TOKEN` to your repository secrets.
+Note: Workers deployment requires authentication and may have different limits than Pages.
 
 ## Performance Optimization
 
-The worker is optimized for performance:
-- Static assets served from Cloudflare's edge
-- Minimal JavaScript execution
-- CSS utility classes for small file size
-- Optimized HTML structure
-
-## Security
-
-- All assets served over HTTPS
-- No server-side vulnerabilities (static content)
-- Cloudflare DDoS protection enabled by default
-
-## Scaling
-
-Cloudflare Workers automatically scale:
-- No configuration needed
-- Handles millions of requests
-- Global edge network deployment
+Cloudflare Pages automatically provides:
+- Global CDN distribution
+- Automatic HTTPS
+- Brotli compression
+- HTTP/2 and HTTP/3 support
+- Unlimited bandwidth (on Free plan)
 
 ## Costs
 
-Free tier includes:
-- 100,000 requests per day
-- 10ms CPU time per request
+Cloudflare Pages Free tier includes:
+- Unlimited requests
+- Unlimited bandwidth
+- 500 builds per month
+- 100 custom domains per project
 - More than enough for most use cases
-
-Paid plans available for higher usage.
 
 ## Support
 
 For issues:
-1. Check [Cloudflare Workers Docs](https://developers.cloudflare.com/workers/)
-2. Visit [Wrangler GitHub](https://github.com/cloudflare/workers-sdk)
-3. Join [Cloudflare Discord](https://discord.gg/cloudflaredev)
+1. Check [Cloudflare Pages Docs](https://developers.cloudflare.com/pages/)
+2. Visit [Cloudflare Community](https://community.cloudflare.com/)
+3. Check [GitHub Issues](https://github.com/OWASP-BLT/BLT-on-Cloudflare/issues)

@@ -4,8 +4,9 @@
   "description": "OWASP BLT website running on Cloudflare Workers",
   "main": "src/index.js",
   "scripts": {
+    "build": "node scripts/build.js",
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
+    "deploy": "npm run build",
     "tail": "wrangler tail"
   },
   "keywords": [
