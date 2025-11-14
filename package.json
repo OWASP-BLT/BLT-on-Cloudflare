@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "wrangler dev",
+    "dev": "wrangler pages dev public",
     "deploy": "npm run build",
     "tail": "wrangler tail"
   },
