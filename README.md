@@ -66,6 +66,8 @@ This repository is configured to automatically deploy to GitHub Pages:
 3. **Deployment**: The built site from the `public` directory is deployed to GitHub Pages
 4. **Live Site**: Access at `https://owasp-blt.github.io/BLT-on-Cloudflare/`
 
+**First-time Setup**: See [GITHUB_PAGES_SETUP.md](GITHUB_PAGES_SETUP.md) for instructions on enabling GitHub Pages for this repository.
+
 ### Manual Deployment
 
 To manually trigger deployment:
