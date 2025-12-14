@@ -1,19 +1,22 @@
 # Deployment Guide
 
+This project can be deployed to **GitHub Pages** (recommended) or **Cloudflare Pages**.
+
 ## Prerequisites
 
-Before deploying to Cloudflare Pages, ensure you have:
+Before deploying, ensure you have:
 
-1. A Cloudflare account (free tier works)
-2. Node.js v16+ and npm installed
+1. Node.js v16+ and npm installed
+2. A GitHub account (for GitHub Pages) or Cloudflare account (for Cloudflare Pages)
 
 ## Project Structure
 
-This project is configured to deploy on **Cloudflare Pages** as a static site with the following structure:
+This project is configured as a static site with the following structure:
 
 - `src/index.js` - Contains the HTML template (for reference/Workers deployment)
 - `public/` - Static assets directory (CSS, JS, and generated HTML)
-- `wrangler.toml` - Cloudflare Pages configuration
+- `.github/workflows/deploy-pages.yml` - GitHub Actions deployment workflow
+- `wrangler.toml` - Cloudflare Pages configuration (optional)
 
 ## Local Development
 
@@ -35,6 +38,67 @@ npm run dev
 ```
 
 The site will be available at `http://localhost:8787`
+
+Alternatively, use any local web server:
+```bash
+# Using Python 3
+cd public && python3 -m http.server 8000
+
+# Using Node.js http-server
+npx http-server public -p 8000
+```
+
+## GitHub Pages Deployment (Recommended)
+
+### Automatic Deployment
+
+This repository is configured for automatic deployment to GitHub Pages:
+
+1. **Setup** (One-time):
+   - Go to repository **Settings** > **Pages**
+   - Under **Source**, select **GitHub Actions**
+   - That's it! The workflow is already configured.
+
+2. **Automatic Builds**:
+   - Every push to the `main` branch triggers the deployment workflow
+   - The workflow runs `npm run build` to generate static files
+   - Files from the `public/` directory are deployed to GitHub Pages
+   - Your site will be live at: `https://owasp-blt.github.io/BLT-on-Cloudflare/`
+
+3. **Manual Deployment**:
+   - Go to **Actions** tab in GitHub
+   - Select **Deploy to GitHub Pages** workflow
+   - Click **Run workflow** button
+   - Select the branch and click **Run workflow**
+
+### Workflow Configuration
+
+The GitHub Actions workflow (`.github/workflows/deploy-pages.yml`) automatically:
+- Checks out the code
+- Sets up Node.js environment
+- Installs dependencies with `npm ci`
+- Builds the site with `npm run build`
+- Deploys the `public/` directory to GitHub Pages
+
+### Custom Domain (Optional)
+
+To use a custom domain with GitHub Pages:
+
+1. Go to repository **Settings** > **Pages**
+2. Under **Custom domain**, enter your domain (e.g., `blt.yourdomain.com`)
+3. Add a `CNAME` file to the `public/` directory with your domain
+4. Configure DNS:
+   - For apex domain: Add A records pointing to GitHub Pages IPs
+   - For subdomain: Add CNAME record pointing to `<username>.github.io`
+5. GitHub will automatically provision SSL certificates
+
+### Monitoring
+
+View deployment status and logs:
+1. Go to **Actions** tab in GitHub
+2. Click on the latest workflow run
+3. View build and deployment logs
+4. Check deployment status and any errors
 
 ## Cloudflare Pages Deployment
 

@@ -1034,7 +1034,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
     
     <!-- GitHub Buttons Script -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>`;
 

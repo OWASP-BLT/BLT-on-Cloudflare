@@ -1,20 +1,21 @@
-# BLT on Cloudflare Pages
+# BLT on GitHub Pages
 
-This is the OWASP BLT website running on Cloudflare Pages. It features the same design as the main [BLT repository](https://github.com/OWASP-BLT/BLT) homepage but optimized for Cloudflare's edge network.
+This is the OWASP BLT website homepage deployed on GitHub Pages. It features the same design as the main [BLT repository](https://github.com/OWASP-BLT/BLT) homepage.
 
 ## 🚀 Features
 
-- **Fast Performance**: Runs on Cloudflare's global edge network
+- **Fast Performance**: Runs on GitHub Pages with global CDN
 - **Same Design**: Matches the exact design of the BLT main homepage
 - **Modern Stack**: Built with vanilla JavaScript, CSS, and HTML
 - **Responsive**: Fully responsive design for all devices
-- **Static Site**: Deployed as a static site on Cloudflare Pages
+- **Static Site**: Deployed as a static site on GitHub Pages
+- **Automated Deployment**: Uses GitHub Actions for continuous deployment
 
 ## 📋 Prerequisites
 
 - Node.js (v16 or higher)
 - npm or yarn
-- Cloudflare account (for deployment)
+- GitHub account (for deployment)
 
 ## 🛠️ Installation
 
@@ -45,9 +46,39 @@ npm run dev
 
 This will start a local development server at `http://localhost:8787`
 
+Alternatively, you can use any local web server to serve the `public` directory:
+```bash
+# Using Python 3
+cd public && python3 -m http.server 8000
+
+# Using Node.js http-server
+npx http-server public -p 8000
+```
+
 ## 🚢 Deployment
 
-Deploy to Cloudflare Pages using automatic Git integration:
+### GitHub Pages (Automated)
+
+This repository is configured to automatically deploy to GitHub Pages:
+
+1. **Automatic Deployment**: Every push to the `main` branch triggers a GitHub Actions workflow
+2. **Build Process**: The workflow builds the site using `npm run build`
+3. **Deployment**: The built site from the `public` directory is deployed to GitHub Pages
+4. **Live Site**: Access at `https://owasp-blt.github.io/BLT-on-Cloudflare/`
+
+**First-time Setup**: See [GITHUB_PAGES_SETUP.md](GITHUB_PAGES_SETUP.md) for instructions on enabling GitHub Pages for this repository.
+
+### Manual Deployment
+
+To manually trigger deployment:
+1. Go to the repository on GitHub
+2. Navigate to **Actions** tab
+3. Select **Deploy to GitHub Pages** workflow
+4. Click **Run workflow**
+
+### Cloudflare Pages (Alternative)
+
+You can also deploy to Cloudflare Pages:
 
 1. Connect your repository to Cloudflare Pages
 2. Set build command: `npm run deploy` (or `npm run build`)
@@ -60,19 +91,22 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
 
 ```
 BLT-on-Cloudflare/
+├── .github/
+│   └── workflows/
+│       └── deploy-pages.yml  # GitHub Actions deployment workflow
 ├── src/
-│   └── index.js          # HTML template source
+│   └── index.js              # HTML template source
 ├── public/
-│   ├── index.html        # Generated HTML (from build)
+│   ├── index.html            # Generated HTML (from build)
 │   ├── css/
-│   │   └── styles.css    # Styling
+│   │   └── styles.css        # Styling
 │   └── js/
-│       └── main.js       # JavaScript functionality
+│       └── main.js           # JavaScript functionality
 ├── scripts/
-│   └── build.js          # Build script to generate HTML
-├── wrangler.toml         # Cloudflare Pages configuration
-├── package.json          # Project dependencies
-└── README.md             # This file
+│   └── build.js              # Build script to generate HTML
+├── wrangler.toml             # Cloudflare Pages configuration (optional)
+├── package.json              # Project dependencies
+└── README.md                 # This file
 ```
 
 ## 🔨 Build Process
@@ -81,7 +115,8 @@ The project uses a build script to generate the static HTML:
 
 1. The HTML template is defined in `src/index.js`
 2. Running `npm run build` extracts the template and generates `public/index.html`
-3. The `public/` directory contains all files served by Cloudflare Pages
+3. The `public/` directory contains all files served by GitHub Pages
+4. GitHub Actions automatically builds and deploys on every push to `main`
 
 **Note**: If you modify `src/index.js`, remember to run `npm run build` to regenerate the HTML file.
 
