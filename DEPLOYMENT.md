@@ -18,11 +18,13 @@ This project is configured to deploy on **Cloudflare Pages** as a static site wi
 ## Local Development
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
 2. Build the static site:
+
 ```bash
 npm run build
 ```
@@ -30,6 +32,7 @@ npm run build
 This generates `public/index.html` from the template in `src/index.js`.
 
 3. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -59,6 +62,7 @@ The site will be available at `http://localhost:8787`
 ### Manual Build
 
 To build locally for testing:
+
 ```bash
 npm run build
 ```
@@ -113,6 +117,7 @@ This warning can be ignored. The build system will use the `pages_build_output_d
 ### Issue: Build fails with "Cannot find module"
 
 **Solution**: Ensure all dependencies are listed in `package.json`:
+
 ```bash
 npm install
 ```
@@ -120,6 +125,7 @@ npm install
 ### Issue: Static assets not loading
 
 **Solution**: Verify your assets are in the `public/` directory:
+
 ```
 public/
 ├── index.html
@@ -132,6 +138,7 @@ public/
 ### Issue: Changes to src/index.js not reflected
 
 **Solution**: Remember to rebuild after modifying the template:
+
 ```bash
 npm run build
 ```
@@ -143,6 +150,7 @@ Then commit the updated `public/index.html`.
 If you prefer to deploy as a Cloudflare Worker instead of Pages:
 
 1. Restore the Workers configuration in `wrangler.toml`:
+
 ```toml
 name = "blt-on-cloudflare"
 main = "src/index.js"
@@ -153,11 +161,13 @@ bucket = "./public"
 ```
 
 2. Login to Cloudflare:
+
 ```bash
 npx wrangler login
 ```
 
 3. Deploy:
+
 ```bash
 npx wrangler deploy
 ```
@@ -167,6 +177,7 @@ Note: Workers deployment requires authentication and may have different limits t
 ## Performance Optimization
 
 Cloudflare Pages automatically provides:
+
 - Global CDN distribution
 - Automatic HTTPS
 - Brotli compression
@@ -176,6 +187,7 @@ Cloudflare Pages automatically provides:
 ## Costs
 
 Cloudflare Pages Free tier includes:
+
 - Unlimited requests
 - Unlimited bandwidth
 - 500 builds per month
@@ -185,6 +197,7 @@ Cloudflare Pages Free tier includes:
 ## Support
 
 For issues:
+
 1. Check [Cloudflare Pages Docs](https://developers.cloudflare.com/pages/)
 2. Visit [Cloudflare Community](https://community.cloudflare.com/)
 3. Check [GitHub Issues](https://github.com/OWASP-BLT/BLT-on-Cloudflare/issues)
