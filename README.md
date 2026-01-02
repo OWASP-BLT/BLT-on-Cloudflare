@@ -1,27 +1,15 @@
-# BLT React on Cloudflare
+# BLT on Cloudflare
 
-This is the **React/Next.js frontend** for the OWASP Bug Logging Tool (BLT), designed to connect to the [Core BLT Django REST Framework API](https://github.com/OWASP-BLT/BLT). This repository serves as the modern React implementation that maintains the same UI and database logic as the main BLT repository.
+This is the **React/Next.js frontend** for the OWASP Bug Logging Tool (BLT), designed to connect to the [Core BLT](https://github.com/OWASP-BLT/BLT). This repository serves as the modern React implementation that maintains the same UI and database logic as the main BLT repository.
 
 ## 🎯 Architecture Overview
 
 This React frontend connects to the existing Django backend, maintaining:
+
 - ✅ **Same Database**: Uses the same PostgreSQL database via Django REST Framework
 - ✅ **Same Logic**: All business logic remains in Django
 - ✅ **Same UI**: Matches the design and user experience of Core BLT
 - ✅ **Modern Stack**: React/Next.js for better performance and developer experience
-
-## 📊 Technology Stack Comparison
-
-| Module | Core BLT | BLT-on-Cloudflare | Why this change? |
-|--------|----------|-------------------|------------------|
-| **Language** | Python | TypeScript (TSX) | Ensures strict "data contracts" between API and UI, reducing runtime crashes |
-| **Framework** | Django (Monolithic) | Next.js (App Router) | Provides SEO-friendly Static Generation (SSG) and instant page transitions |
-| **Hosting** | VPS / Docker | Cloudflare Pages | Zero-latency global delivery via Cloudflare's Edge network; infinite scalability |
-| **UI/Styling** | Tailwind CSS | Tailwind CSS | Drastically reduces CSS bundle size by stripping unused styles at build time |
-| **API Layer** | Django Templates | Django REST Framework (DRF) | Converts Python logic into JSON, making data accessible to any frontend |
-| **Data Fetching** | Server-Side Querying | TanStack Query (React Query) | Handles caching, loading states, and "optimistic updates" for seamless UI |
-| **Authentication** | Session Cookies | JWT (JSON Web Tokens) | Allows secure authentication across different domains (.org to .dev) |
-| **Icons/Assets** | FontAwesome / PNG | Lucide React / FontAwesome | Lightweight, tree-shakeable SVG icons optimized for React |
 
 ## 📋 Prerequisites
 
@@ -33,46 +21,52 @@ This React frontend connects to the existing Django backend, maintaining:
 ## 🛠️ Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/OWASP-BLT/BLT-React-on-Cloudflare.git
-cd BLT-React-on-Cloudflare
-```
+
+    ```bash
+    git clone https://github.com/OWASP-BLT/BLT-React-on-Cloudflare.git
+    cd BLT-React-on-Cloudflare
+    ```
 
 2. Install dependencies:
-```bash
-npm install
-```
+
+    ```bash
+    npm install
+    ```
 
 3. Configure environment variables:
-```bash
-cp .env.example .env.local
-```
 
-Edit `.env.local` and set your Django API URL:
-```env
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
-```
+    ```bash
+    cp .env.example .env.local
+    ```
+
+    Edit `.env.local` and set your Django API URL:
+
+    ```env
+    NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
+    ```
 
 4. Make sure the Core BLT Django API is running (see [Core BLT Repository](https://github.com/OWASP-BLT/BLT))
 
 ## 🏃 Development
 
 1. Start the Django API server (from Core BLT repo):
-```bash
-# In Core BLT directory
-python manage.py runserver
-```
+
+    ```bash
+    # In Core BLT directory
+    python manage.py runserver
+    ```
 
 2. Start the Next.js development server:
-```bash
-npm run dev
-```
+
+    ```bash
+    npm run dev
+    ```
 
 The React app will be available at `http://localhost:3000` and will connect to the Django API.
 
 ## 🏗️ Project Structure
 
-```
+```text
 BLT-React-on-Cloudflare/
 │
 ├── app/                          # Next.js App Router pages
@@ -119,6 +113,7 @@ BLT-React-on-Cloudflare/
 This frontend connects to the Django REST Framework API endpoints:
 
 ### Authentication Endpoints
+
 - `POST /api/auth/login/` - Login with username/password
 - `POST /api/auth/signup/` - Register new user
 - `POST /api/auth/logout/` - Logout user
@@ -126,6 +121,7 @@ This frontend connects to the Django REST Framework API endpoints:
 - `POST /api/auth/refresh/` - Refresh JWT token
 
 ### Data Endpoints (adjust based on your Django API)
+
 - `GET /api/organizations/` - List organizations
 - `GET /api/issues/` - List issues/bugs
 - `GET /api/hackathons/` - List hackathons
@@ -156,6 +152,7 @@ This frontend connects to the Django REST Framework API endpoints:
 ### Environment Variables for Production
 
 Make sure to set:
+
 - `NEXT_PUBLIC_API_BASE_URL` - Your Django API URL
 
 ## 🔗 Links
