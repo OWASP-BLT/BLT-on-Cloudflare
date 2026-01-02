@@ -67,7 +67,7 @@ The React app will be available at `http://localhost:3000` and will connect to t
 ## 🏗️ Project Structure
 
 ```text
-BLT-React-on-Cloudflare/
+BLT-on-Cloudflare/
 │
 ├── app/                          # Next.js App Router pages
 │   ├── api/                      # API routes (if needed for Cloudflare Workers)
