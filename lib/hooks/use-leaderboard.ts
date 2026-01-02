@@ -10,28 +10,28 @@ import { leaderboardApi } from '../api/queries';
 export function useTopEarners() {
   return useQuery({
     queryKey: ['leaderboard', 'earners'],
-    queryFn: () => leaderboardApi.getTopEarners(),
+    queryFn: leaderboardApi.getTopEarners,
   });
 }
 
 export function useTopBugReporters() {
   return useQuery({
     queryKey: ['leaderboard', 'reporters'],
-    queryFn: () => leaderboardApi.getTopBugReporters(),
+    queryFn: leaderboardApi.getTopBugReporters,
   });
 }
 
 export function useTopPRContributors() {
   return useQuery({
     queryKey: ['leaderboard', 'contributors'],
-    queryFn: () => leaderboardApi.getTopPRContributors(),
+    queryFn: leaderboardApi.getTopPRContributors,
   });
 }
 
 export function useTopReferrals() {
   return useQuery({
     queryKey: ['leaderboard', 'referrals'],
-    queryFn: () => leaderboardApi.getTopReferrals(),
+    queryFn: leaderboardApi.getTopReferrals,
   });
 }
 
