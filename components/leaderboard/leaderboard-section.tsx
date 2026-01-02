@@ -1,6 +1,14 @@
+'use client';
+
 import Link from "next/link";
 import LeaderboardCard from "./leaderboard-card";
-import { useTopEarners, useTopBugReporters, useTopPRContributors, useTopReferrals } from "@/lib/hooks/use-leaderboard";
+import {
+  useTopEarners,
+  useTopBugReporters,
+  useTopPRContributors,
+  useTopReferrals,
+} from '@/lib/hooks/use-leaderboard';
+
 
 interface LeaderboardSectionProps {
   totalBounties?: string;
