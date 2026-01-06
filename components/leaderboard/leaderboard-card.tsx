@@ -1,19 +1,22 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import { LeaderboardEntry as APIEntry } from '@/lib/types';
 
-interface LeaderboardEntry {
+type UIEntry = {
   rank: number;
   name: string;
   href?: string;
   avatar?: string;
   value: string | number;
   valueLabel?: ReactNode;
-}
+};
+
+type Entry = APIEntry | UIEntry;
 
 interface LeaderboardCardProps {
   title: string;
   icon: string;
-  entries: LeaderboardEntry[];
+  entries: Entry[];
   bgColor?: string;
 }
 
@@ -33,37 +36,43 @@ export default function LeaderboardCard({
       </div>
       <div className="p-4">
         <div className="space-y-4">
-          {entries.map((entry) => (
-            <div key={entry.rank} className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span className="text-[#e74c3c] font-bold">{entry.rank}</span>
-                {entry.avatar && (
-                  <img
-                    src={entry.avatar}
-                    alt={entry.name}
-                    width={32}
-                    height={32}
-                    className="w-8 h-8 rounded-full"
-                  />
-                )}
-                {entry.href ? (
-                  <Link
-                    href={entry.href}
-                    className="font-medium hover:text-[#e74c3c]"
-                  >
-                    {entry.name}
-                  </Link>
+          {entries.map((entry) => {
+            const rank = 'rank' in entry ? entry.rank : (entry as any).rank;
+            const name = 'name' in entry ? (entry as any).name : entry.user.username;
+            const avatar = 'avatar' in entry ? (entry as any).avatar : entry.user.avatar;
+            const href = 'href' in entry ? (entry as any).href : undefined;
+            const value = (entry as any).value ?? (entry as any).score;
+            const valueLabel = (entry as any).valueLabel;
+
+            return (
+              <div key={rank} className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="text-[#e74c3c] font-bold">{rank}</span>
+                  {avatar && (
+                    <img
+                      src={avatar}
+                      alt={name}
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 rounded-full"
+                    />
+                  )}
+                  {href ? (
+                    <Link href={href} className="font-medium hover:text-[#e74c3c]">
+                      {name}
+                    </Link>
+                  ) : (
+                    <span className="font-medium">{name}</span>
+                  )}
+                </div>
+                {valueLabel ? (
+                  <div className="flex items-center">{valueLabel}</div>
                 ) : (
-                  <span className="font-medium">{entry.name}</span>
+                  <span className="text-green-600 font-medium">{value}</span>
                 )}
               </div>
-              {entry.valueLabel ? (
-                <div className="flex items-center">{entry.valueLabel}</div>
-              ) : (
-                <span className="text-green-600 font-medium">{entry.value}</span>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

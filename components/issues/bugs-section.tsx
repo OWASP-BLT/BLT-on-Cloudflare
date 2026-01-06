@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import BugCard from "./bug-card";
 import { useIssues } from "@/lib/hooks/use-issues";
+import { formatRelativeTime } from '@/lib/utils';
 interface Bug {
   title: string;
   domain: string;
@@ -76,8 +77,21 @@ export default function BugsSection({ bugs }: BugsSectionProps) {
           Latest Bug Reports
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {displayBugs.map((bug, index) => (
-            <BugCard key={index} {...bug} />
+          {displayBugs.map((b: any, index) => (
+            <BugCard
+              key={index}
+              title={b.title}
+              domain={b.domain ?? b.domain_name ?? ''}
+              domainHref={b.domain_url ?? b.domainHref}
+              reporter={b.reporter_username ?? String(b.reporter)}
+              reporterHref={b.reporter_url ?? b.reporterHref ?? `/users/${b.reporter}`}
+              reporterAvatar={b.reporter_avatar ?? b.reporterAvatar}
+              timeAgo={b.created_at ? formatRelativeTime(b.created_at) : b.timeAgo ?? ''}
+              status={b.status}
+              likes={b.likes_count ?? b.likes ?? 0}
+              severity={b.severity}
+              href={b.href ?? `/issues/${b.id}`}
+            />
           ))}
         </div>
         <div className="text-center">

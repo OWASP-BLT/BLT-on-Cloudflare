@@ -77,8 +77,18 @@ export default function HackathonsSection({
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          {displayHackathons.map((hackathon, index) => (
-            <HackathonCard key={index} {...hackathon} />
+          {displayHackathons.map((h: any, index) => (
+            <HackathonCard
+              key={index}
+              title={h.title}
+              organizer={h.organizer_name ?? String(h.organizer)}
+              organizerLink={h.organizer_link ?? h.organizerLink}
+              description={h.description}
+              startDate={h.start_date ?? h.startDate}
+              endDate={h.end_date ?? h.endDate}
+              status={h.status}
+              href={h.href}
+            />
           ))}
         </div>
         <div className="text-center">
