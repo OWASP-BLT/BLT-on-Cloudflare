@@ -1,6 +1,6 @@
 /**
  * TypeScript type definitions matching Django models
- * These types should match the serializers in Django REST Framework
+ * Single source of truth for all types
  */
 
 export interface User {
@@ -84,3 +84,24 @@ export interface Bounty {
   created_at: string;
 }
 
+export interface Domain {
+  id: number;
+  name: string;
+  url: string;
+  description?: string;
+}
+
+export interface TimeLog {
+  id: number;
+  user: number;
+  start_time: string;
+  end_time?: string;
+  duration?: string;
+  task_description?: string;
+}
+
+export interface Tag {
+  id: number;
+  name: string;
+  description?: string;
+}
