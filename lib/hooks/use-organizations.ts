@@ -2,10 +2,11 @@
  * Organizations hooks using TanStack Query
  */
 
-'use client';
+"use client";
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { organizationsApi, Organization } from '../api/queries';
+import { organizationsApi } from '../api/queries';
+import { Organization } from '../types';
 
 export function useOrganizations() {
   return useQuery({

@@ -7,7 +7,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import * as authApi from '../api/auth';
-import { LoginCredentials, SignupData, User } from '../api/auth';
+import { User } from '../types';
 
 const AUTH_QUERY_KEY = ['auth', 'user'];
 
@@ -22,26 +22,30 @@ export function useAuth() {
     data: user,
     isLoading,
     error,
-  } = useQuery<User>({
+  } = useQuery<User | null>({
     queryKey: AUTH_QUERY_KEY,
     queryFn: authApi.getCurrentUser,
-    enabled: authApi.isAuthenticated(),
-    retry: false,
+    // Always try to fetch, let backend determine auth status
+    enabled: true,
+    retry: 1,
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
   const loginMutation = useMutation({
-    mutationFn: (credentials: LoginCredentials) => authApi.login(credentials),
-    onSuccess: (data) => {
-      queryClient.setQueryData(AUTH_QUERY_KEY, data.user);
+    mutationFn: (credentials: authApi.LoginCredentials) =>
+      authApi.login(credentials),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: AUTH_QUERY_KEY });
       router.push('/');
     },
   });
 
   const signupMutation = useMutation({
-    mutationFn: (data: SignupData) => authApi.signup(data),
-    onSuccess: (data) => {
-      queryClient.setQueryData(AUTH_QUERY_KEY, data.user);
-      router.push('/');
+    mutationFn: (data: authApi.SignupData) => authApi.signup(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: AUTH_QUERY_KEY });
+      // Redirect to login or email verification page
+      router.push('/login');
     },
   });
 
