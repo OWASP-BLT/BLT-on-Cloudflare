@@ -2,10 +2,11 @@
  * Issues hooks using TanStack Query
  */
 
-'use client';
+"use client";
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { issuesApi, Issue } from '../api/queries';
+import { issuesApi } from '../api/queries';
+import { Issue } from '../types';
 
 export function useIssues(params?: { organization?: number; status?: string }) {
   return useQuery({
