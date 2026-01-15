@@ -18,9 +18,14 @@ export default function Footer() {
           >
             <i className="fab fa-github fa-2x" />
           </a>
+
         </div>
-        <p className="mt-4">© 2024 OWASP BLT. All rights reserved.</p>
-        <p>Last commit: abc123def</p>
+        <p className="mt-4 text-sm">
+          Need help? Email us at
+          <a href="mailto:blt-support@owasp.org" className="text-red-500 hover:underline"> blt-support@owasp.org</a>
+        </p>
+        <p className="mt-4">© 2026 OWASP BLT. All rights reserved.</p>
+        <p>Last commit: Not available</p>
       </div>
     </footer>
   );
