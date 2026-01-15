@@ -105,3 +105,65 @@ export interface Tag {
   name: string;
   description?: string;
 }
+
+// Additional shared types consolidated from pages
+export interface Comment {
+  id: number;
+  author: {
+    username: string;
+    avatar?: string;
+  };
+  content: string;
+  created_at: string;
+}
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  author: {
+    username: string;
+    avatar?: string;
+  };
+  created_at: string;
+  updated_at?: string;
+  tags?: string[];
+  likes?: number;
+  comments_count?: number;
+}
+
+export type BadgeRarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
+
+export interface Badge {
+  id: number;
+  name: string;
+  description: string;
+  icon: string;
+  rarity: BadgeRarity;
+  requirements: string;
+  total_awarded: number;
+}
+
+export interface SearchResult {
+  type: 'issue' | 'user' | 'domain' | 'project';
+  id: number;
+  title: string;
+  description: string;
+  url: string;
+  metadata?: Record<string, unknown>;
+}
+
+export interface UserProfile extends User {
+  bio?: string;
+  score?: number;
+  rank?: number;
+  issues_found?: number;
+  contributions?: number;
+  badges?: Badge[];
+  website?: string;
+  github?: string;
+  twitter?: string;
+  linkedin?: string;
+}
