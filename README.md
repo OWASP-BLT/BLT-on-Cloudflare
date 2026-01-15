@@ -1,113 +1,173 @@
-# BLT on Cloudflare Pages
+# BLT on Cloudflare
 
-This is the OWASP BLT website running on Cloudflare Pages. It features the same design as the main [BLT repository](https://github.com/OWASP-BLT/BLT) homepage but optimized for Cloudflare's edge network.
+This is the **React/Next.js frontend** for the OWASP Bug Logging Tool (BLT), designed to connect to the [Core BLT](https://github.com/OWASP-BLT/BLT). This repository serves as the modern React implementation that maintains the same UI and database logic as the main BLT repository.
 
-## 🚀 Features
+## 🎯 Architecture Overview
 
-- **Fast Performance**: Runs on Cloudflare's global edge network
-- **Same Design**: Matches the exact design of the BLT main homepage
-- **Modern Stack**: Built with vanilla JavaScript, CSS, and HTML
-- **Responsive**: Fully responsive design for all devices
-- **Static Site**: Deployed as a static site on Cloudflare Pages
+This React frontend connects to the existing Django backend, maintaining:
+
+- ✅ **Same Database**: Uses the same PostgreSQL database via Django REST Framework
+- ✅ **Same Logic**: All business logic remains in Django
+- ✅ **Same UI**: Matches the design and user experience of Core BLT
+- ✅ **Modern Stack**: React/Next.js for better performance and developer experience
 
 ## 📋 Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js (v18 or higher)
 - npm or yarn
+- Access to Core BLT Django API (running on `http://localhost:8000` or your API URL)
 - Cloudflare account (for deployment)
 
 ## 🛠️ Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/OWASP-BLT/BLT-on-Cloudflare.git
-cd BLT-on-Cloudflare
-```
+
+    ```bash
+    git clone https://github.com/OWASP-BLT/BLT-React-on-Cloudflare.git
+    cd BLT-React-on-Cloudflare
+    ```
 
 2. Install dependencies:
-```bash
-npm install
-```
 
-3. Build the static site:
-```bash
-npm run build
-```
+    ```bash
+    npm install
+    ```
 
-This generates `public/index.html` from the template in `src/index.js`.
+3. Configure environment variables:
+
+    ```bash
+    cp .env.example .env.local
+    ```
+
+    Edit `.env.local` and set your Django API URL:
+
+    ```env
+    NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
+    ```
+
+4. Make sure the Core BLT Django API is running (see [Core BLT Repository](https://github.com/OWASP-BLT/BLT))
 
 ## 🏃 Development
 
-Run the development server:
-```bash
-npm run dev
+1. Start the Django API server (from Core BLT repo):
+
+    ```bash
+    # In Core BLT directory
+    python manage.py runserver
+    ```
+
+2. Start the Next.js development server:
+
+    ```bash
+    npm run dev
+    ```
+
+The React app will be available at `http://localhost:3000` and will connect to the Django API.
+
+## 🏗️ Project Structure
+
+```text
+BLT-on-Cloudflare/
+│
+├── app/                          # Next.js App Router pages
+│   ├── api/                      # API routes (if needed for Cloudflare Workers)
+│   ├── [feature-pages]/         # Feature routes
+│   ├── layout.tsx                # Root layout with QueryProvider
+│   ├── page.tsx                  # Home page
+│   └── globals.css               # Global styles
+│
+├── components/                   # React components
+│   ├── home/                     # Home page sections
+│   ├── issues/                   # Bug reporting components
+│   ├── hackathons/               # Hackathon components
+│   ├── leaderboard/              # Leaderboard components
+│   ├── organizations/            # Organization components
+│   ├── projects/                 # Project components
+│   ├── header.tsx                # Site header/navigation
+│   └── footer.tsx                # Site footer
+│
+├── lib/                          # Core utilities & logic
+│   ├── api/                      # API client and endpoints
+│   │   ├── client.ts             # Axios client with JWT handling
+│   │   ├── auth.ts               # Authentication API
+│   │   └── queries.ts            # Data fetching functions
+│   ├── hooks/                     # Custom React hooks
+│   │   ├── use-auth.ts           # Authentication hook
+│   │   ├── use-issues.ts         # Issues data hook
+│   │   ├── use-organizations.ts  # Organizations data hook
+│   │   ├── use-hackathons.ts     # Hackathons data hook
+│   │   └── use-leaderboard.ts    # Leaderboard data hook
+│   └── providers/                # React context providers
+│       └── query-provider.tsx     # TanStack Query provider
+│
+└── Configuration files
+    ├── package.json
+    ├── tsconfig.json
+    ├── next.config.mjs
+    ├── tailwind.config.js
+    └── .env.example
 ```
 
-This will start a local development server at `http://localhost:8787`
+## 🔌 API Integration
+
+This frontend connects to the Django REST Framework API endpoints:
+
+### Authentication Endpoints
+
+- `POST /api/auth/login/` - Login with username/password
+- `POST /api/auth/signup/` - Register new user
+- `POST /api/auth/logout/` - Logout user
+- `GET /api/auth/me/` - Get current user
+- `POST /api/auth/refresh/` - Refresh JWT token
+
+### Data Endpoints (adjust based on your Django API)
+
+- `GET /api/organizations/` - List organizations
+- `GET /api/issues/` - List issues/bugs
+- `GET /api/hackathons/` - List hackathons
+- `GET /api/leaderboard/earners/` - Top earners
+- `GET /api/leaderboard/reporters/` - Top bug reporters
+- And more...
+
+## 🔐 Authentication Flow
+
+1. User logs in via `/login` page
+2. Frontend sends credentials to Django API `/api/auth/login/`
+3. Django returns JWT tokens (`access` and `refresh`)
+4. Frontend stores tokens in HTTP-only cookies
+5. All subsequent API requests include `Authorization: Bearer <token>` header
+6. On token expiry, frontend automatically refreshes using refresh token
 
 ## 🚢 Deployment
 
-Deploy to Cloudflare Pages using automatic Git integration:
+### Cloudflare Pages
 
-1. Connect your repository to Cloudflare Pages
-2. Set build command: `npm run deploy` (or `npm run build`)
-3. Set build output directory: `public`
-4. Deploy!
+1. Connect repository to Cloudflare Pages
+2. Set build command: `npm run build`
+3. Set build output directory: `.next`
+4. Set Node.js version: `18` or higher
+5. Add environment variable: `NEXT_PUBLIC_API_BASE_URL=https://your-django-api.com/api`
+6. Deploy!
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
+### Environment Variables for Production
 
-## 📁 Project Structure
+Make sure to set:
 
-```
-BLT-on-Cloudflare/
-├── src/
-│   └── index.js          # HTML template source
-├── public/
-│   ├── index.html        # Generated HTML (from build)
-│   ├── css/
-│   │   └── styles.css    # Styling
-│   └── js/
-│       └── main.js       # JavaScript functionality
-├── scripts/
-│   └── build.js          # Build script to generate HTML
-├── wrangler.toml         # Cloudflare Pages configuration
-├── package.json          # Project dependencies
-└── README.md             # This file
-```
-
-## 🔨 Build Process
-
-The project uses a build script to generate the static HTML:
-
-1. The HTML template is defined in `src/index.js`
-2. Running `npm run build` extracts the template and generates `public/index.html`
-3. The `public/` directory contains all files served by Cloudflare Pages
-
-**Note**: If you modify `src/index.js`, remember to run `npm run build` to regenerate the HTML file.
-
-## 🎨 Design
-
-The design is based on the official OWASP BLT homepage with:
-- Clean, modern interface
-- Red accent color (#dc2626) matching OWASP branding
-- Responsive grid layouts
-- Smooth animations and transitions
-- Component showcase section
-- Partner highlights
+- `NEXT_PUBLIC_API_BASE_URL` - Your Django API URL
 
 ## 🔗 Links
 
-- **Main BLT Repository**: [OWASP-BLT/BLT](https://github.com/OWASP-BLT/BLT)
+- **Core BLT Repository**: [OWASP-BLT/BLT](https://github.com/OWASP-BLT/BLT)
 - **Live Site**: [owaspblt.org](https://www.owaspblt.org)
 - **OWASP Project Page**: [OWASP Bug Logging Tool](https://owasp.org/www-project-bug-logging-tool/)
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## 📄 License
 
-This project is licensed under the GPL-3.0 License - see the LICENSE file for details.
+This project is licensed under the AGPL-3.0 License - see the LICENSE file for details.
 
 ## 👥 Authors
 
@@ -116,5 +176,5 @@ This project is licensed under the GPL-3.0 License - see the LICENSE file for de
 ## 🙏 Acknowledgments
 
 - OWASP Foundation for supporting the BLT project
-- Cloudflare for providing Workers platform
-- All contributors to the main BLT project
+- Cloudflare for providing Pages platform
+- All contributors to the Core BLT project
