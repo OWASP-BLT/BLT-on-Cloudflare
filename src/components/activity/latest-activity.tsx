@@ -91,13 +91,13 @@ export default function LatestActivity({
               </div>
               <div className="flex justify-between mt-6 pt-4 border-t border-gray-100">
                 <Link
-                  href="/repositories"
+                  href="#"
                   className="text-sm text-[#e74c3c] hover:text-[#c0392b] font-medium"
                 >
                   View All
                 </Link>
                 <Link
-                  href="/repositories/new"
+                  href="#"
                   className="text-sm text-[#e74c3c] hover:text-[#c0392b] font-medium flex items-center"
                 >
                   <svg
@@ -155,13 +155,13 @@ export default function LatestActivity({
               </div>
               <div className="flex justify-between mt-6 pt-4 border-t border-gray-100">
                 <Link
-                  href="/forum"
+                  href="#"
                   className="text-sm text-[#e74c3c] hover:text-[#c0392b] font-medium"
                 >
                   View All
                 </Link>
                 <Link
-                  href="/forum/new"
+                  href="#"
                   className="text-sm text-[#e74c3c] hover:text-[#c0392b] font-medium flex items-center"
                 >
                   <i className="fas fa-plus mr-1" />

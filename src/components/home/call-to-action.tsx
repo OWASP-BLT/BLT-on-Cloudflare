@@ -10,25 +10,25 @@ export default function CallToAction() {
         </p>
         <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
           <Link
-            href="/community"
+            href="#"
             className="inline-flex select-none items-center justify-center px-4 py-2 text-red-500 border-2 border-red-500 rounded-lg hover:bg-red-500 hover:text-white font-medium transition-colors duration-200"
           >
             <i className="fas fa-users mr-2" /> Join the Community
           </Link>
           <Link
-            href="/projects"
+            href="#"
             className="inline-flex select-none items-center justify-center px-4 py-2 text-red-500 border-2 border-red-500 rounded-lg hover:bg-red-500 hover:text-white font-medium transition-colors duration-200"
           >
             <i className="fas fa-project-diagram mr-2" /> Explore Projects
           </Link>
           <Link
-            href="/roadmap"
+            href="#"
             className="inline-flex select-none items-center justify-center px-4 py-2 text-red-500 border-2 border-red-500 rounded-lg hover:bg-red-500 hover:text-white font-medium transition-colors duration-200"
           >
             <i className="fas fa-road mr-2" /> Roadmap
           </Link>
           <Link
-            href="/donate"
+            href="#"
             className="inline-flex select-none items-center justify-center px-4 py-2 text-red-500 border-2 border-red-500 rounded-lg hover:bg-red-500 hover:text-white font-medium transition-colors duration-200"
           >
             <i className="fas fa-donate mr-2" /> Support Us

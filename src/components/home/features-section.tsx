@@ -26,7 +26,7 @@ export default function FeaturesSection() {
               Get rewarded for your security findings.
             </p>
             <Link
-              href="/bounties"
+              href="#"
               className="inline-block mt-3 text-[#e74c3c] hover:text-[#c0392b] font-medium text-sm group"
             >
               <span className="flex items-center gap-1">
@@ -61,7 +61,7 @@ export default function FeaturesSection() {
               Access expert-led security courses.
             </p>
             <Link
-              href="/education"
+              href="#"
               className="inline-block mt-3 text-[#e74c3c] hover:text-[#c0392b] font-medium text-sm group"
             >
               <span className="flex items-center gap-1">

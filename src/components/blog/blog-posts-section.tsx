@@ -22,7 +22,7 @@ export default function BlogPostsSection({
       timeAgo: "3 days ago",
       description:
         "Explore the most critical security vulnerabilities discovered this year and learn how to protect your applications from these threats...",
-      href: "/blog/top-10-security-vulnerabilities-2024",
+      href: "#",
     },
     {
       title: "Getting Started with Bug Bounty Programs",
@@ -30,7 +30,7 @@ export default function BlogPostsSection({
       timeAgo: "1 week ago",
       description:
         "A comprehensive guide for beginners looking to start their journey in bug bounty hunting and ethical hacking...",
-      href: "/blog/getting-started-bug-bounty",
+      href: "#",
     },
   ];
 

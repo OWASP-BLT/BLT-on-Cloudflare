@@ -7,7 +7,7 @@ export default function OrganizationCTA() {
         <div className="flex-grow h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
         <div className="mx-2">
           <Link
-            href="/register-organization"
+            href="#"
             className="flex items-center justify-center gap-3 px-4 py-3 text-xl rounded-md border border-gray-300 hover:text-black hover:shadow-md transition-all duration-300"
           >
             <i className="fas fa-building text-[#e74c3c]" />

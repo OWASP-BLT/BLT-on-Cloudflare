@@ -18,7 +18,7 @@ export default function ReferralProgram() {
         </div>
         <div className="flex justify-center">
           <Link
-            href="/login"
+            href="#"
             className="px-4 py-2 bg-[#e74c3c] text-white rounded-lg hover:bg-[#c0392b] hover:text-white transition-colors inline-flex items-center"
           >
             <i className="fas fa-sign-in-alt mr-2" />

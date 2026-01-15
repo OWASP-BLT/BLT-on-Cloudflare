@@ -1,6 +1,6 @@
 export default function HeroSection() {
   return (
-    <div className="relative pt-24 mt-4">
+    <div className="relative pt-4 mt-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <h1 className="text-4xl font-bold mb-5 text-black/90">
           OWASP BLT: Secure the Web, Get Rewarded

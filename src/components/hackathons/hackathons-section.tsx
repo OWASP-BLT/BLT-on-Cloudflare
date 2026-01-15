@@ -1,8 +1,8 @@
 'use client';
 
+import { useHackathons } from "@/lib/hooks/use-hackathons";
 import Link from "next/link";
 import HackathonCard from "./hackathon-card";
-import { useHackathons } from "@/lib/hooks/use-hackathons";
 interface Hackathon {
   title: string;
   organizer: string;
@@ -93,7 +93,7 @@ export default function HackathonsSection({
         </div>
         <div className="text-center">
           <Link
-            href="/hackathons"
+            href="#"
             className="inline-flex items-center px-6 py-3 border border-[#e74c3c] text-[#e74c3c] rounded-lg hover:bg-[#e74c3c] hover:text-white font-medium transition-colors duration-200"
           >
             View All Hackathons
