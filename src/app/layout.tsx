@@ -4,7 +4,11 @@ import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap"
+});
 
 export const metadata = {
   title: "OWASP BLT",
@@ -14,7 +18,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={`${inter.variable} font-sans`}>
       <head>
         <link
           rel="stylesheet"
@@ -24,7 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="bg-gray-50">
         <QueryProvider>
           <Header />
-          <main className="pt-24 mt-4">{children}</main>
+          <main className="pt-8 mt-4 bg-white">{children}</main>
         </QueryProvider>
       </body>
     </html>
