@@ -9,11 +9,10 @@
         "start": "next start",
           "lint": "next lint",
             "type-check": "tsc --noEmit",
-              "pages:build": "open-next build",
-                "preview": "wrangler pages dev .open-next/static",
-                  "preview:static": "serve -s .open-next/assets -l 3000",
-                    "preview:node": "next start -p 3000",
-                      "deploy": "wrangler pages deploy public --project-name=blt-on-cloudflare --commit-dirty=true"
+              "cf:build": "npx @cloudflare/next-on-pages build",
+                "preview": "wrangler pages dev .vercel/output/static",
+                  "preview:node": "next start -p 3000",
+                    "deploy": "wrangler pages deploy .vercel/output/static --project-name=bltoncloudflare --commit-dirty=true"
   },
   "keywords": [
     "owasp",
@@ -39,14 +38,14 @@
                     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20241106.0",
-      "@types/js-cookie": "^3.0.6",
-        "@types/node": "^20.0.0",
-          "@types/react": "^19.0.0",
-            "autoprefixer": "^10.4.20",
-              "eslint": "^9.0.0",
-                "eslint-config-next": "^16.0.0",
-                  "open-next": "^3.1.3",
+    "@cloudflare/next-on-pages": "^1.13.0",
+      "@cloudflare/workers-types": "^4.20241106.0",
+        "@types/js-cookie": "^3.0.6",
+          "@types/node": "^20.0.0",
+            "@types/react": "^19.0.0",
+              "autoprefixer": "^10.4.20",
+                "eslint": "^9.0.0",
+                  "eslint-config-next": "^16.0.0",
                     "postcss": "^8.4.47",
                       "serve": "^14.2.5",
                         "tailwindcss": "^3.4.14",
