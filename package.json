@@ -1,18 +1,18 @@
 {
   "name": "blt-on-cloudflare",
-    "version": "1.0.0",
-      "description": "OWASP BLT React/Next.js frontend connecting to Django REST Framework backend",
-        "private": true,
-          "scripts": {
+  "version": "1.0.0",
+  "description": "OWASP BLT React/Next.js frontend connecting to Django REST Framework backend",
+  "private": true,
+  "scripts": {
     "dev": "next dev",
-      "build": "next build",
-        "start": "next start",
-          "lint": "next lint",
-            "type-check": "tsc --noEmit",
-              "cf:build": "npx @cloudflare/next-on-pages build",
-                "preview": "wrangler pages dev .vercel/output/static",
-                  "preview:node": "next start -p 3000",
-                    "deploy": "wrangler pages deploy .vercel/output/static --project-name=bltoncloudflare --commit-dirty=true"
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "cf:build": "open-next build",
+    "preview": "wrangler pages dev .open-next",
+    "preview:node": "next start -p 3000",
+    "deploy": "wrangler pages deploy .open-next --project-name=bltoncloudflare --commit-dirty=true"
   },
   "keywords": [
     "owasp",
@@ -24,35 +24,36 @@
     "typescript",
     "security"
   ],
-    "author": "OWASP BLT Team",
-      "license": "AGPL-3.0",
-        "dependencies": {
+  "author": "OWASP BLT Team",
+  "license": "AGPL-3.0",
+  "dependencies": {
     "@tanstack/react-query": "^5.56.2",
-      "axios": "^1.13.2",
-        "clsx": "^2.1.1",
-          "js-cookie": "^3.0.5",
-            "next": "^15.0.0",
-              "react": "^19.0.0",
-                "react-dom": "^19.0.0",
-                  "tailwind-merge": "^2.5.4",
-                    "zod": "^3.23.8"
+    "axios": "^1.13.2",
+    "clsx": "^2.1.1",
+    "js-cookie": "^3.0.5",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^2.5.4",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.13.0",
-      "@cloudflare/workers-types": "^4.20241106.0",
-        "@types/js-cookie": "^3.0.6",
-          "@types/node": "^20.0.0",
-            "@types/react": "^19.0.0",
-              "autoprefixer": "^10.4.20",
-                "eslint": "^9.0.0",
-                  "eslint-config-next": "^16.0.0",
-                    "postcss": "^8.4.47",
-                      "tailwindcss": "^3.4.14",
-                        "typescript": "^5.6.0",
-                          "wrangler": "^4.60.0"
+    "@cloudflare/workers-types": "^4.20241106.0",
+    "@opennextjs/cloudflare": "^1.15.1",
+    "@types/js-cookie": "^3.0.6",
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.1.4",
+    "open-next": "^1.3.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.0",
+    "wrangler": "^4.60.0"
   },
   "engines": {
     "node": ">=20.18.1",
-      "npm": ">=9.0.0"
+    "npm": ">=9.0.0"
   }
 }
