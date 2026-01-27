@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Build for Cloudflare Pages
-        run: npm run cf:build
+        run: npm run pages:build
         env:
           NEXT_PUBLIC_API_BASE_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL }}
           NEXT_PUBLIC_ENVIRONMENT: production
