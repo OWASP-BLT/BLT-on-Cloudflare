@@ -1,9 +1,9 @@
+# Project Name
 name = "bltoncloudflare"
-main = ".vercel/output/static/_worker.js"
-compatibility_date = "2024-09-23"
+
+# Compatibility settings (REQUIRED for Next.js)
+compatibility_date = "2025-09-15"
 compatibility_flags = ["nodejs_compat"]
 
-# Static assets (images, css) must be served from a specific bucket or folder
-# Workers Sites (legacy) configuration:
-[site]
-bucket = ".vercel/output/static"
+# PAGES CONFIGURATION
+pages_build_output_dir = ".vercel/output/static"
