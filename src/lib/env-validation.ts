@@ -19,7 +19,7 @@ export function validateEnvironment() {
   // Check required environment variables
   const requiredEnvVars = {
     NEXT_PUBLIC_API_BASE_URL: 'https://owaspblt.org/api/v1',
-    NEXT_PUBLIC_ENVIRONMENT: 'http://localhost:8000/api/v1',
+    NEXT_PUBLIC_ENVIRONMENT:  'production or development',
   };
 
   for (const [envVar, message] of Object.entries(requiredEnvVars)) {
