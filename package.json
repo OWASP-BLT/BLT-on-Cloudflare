@@ -1,24 +1,53 @@
 {
   "name": "blt-on-cloudflare",
-  "version": "1.0.0",
-  "description": "OWASP BLT website running on Cloudflare Workers",
-  "main": "src/index.js",
-  "scripts": {
-    "build": "node scripts/build.js",
-    "dev": "wrangler pages dev public",
-    "deploy": "npm run build",
-    "tail": "wrangler tail"
+    "version": "1.0.0",
+      "description": "OWASP BLT React/Next.js frontend connecting to Django REST Framework backend",
+        "private": true,
+          "scripts": {
+    "dev": "next dev",
+      "build": "next build",
+        "start": "next start",
+          "lint": "next lint",
+            "type-check": "tsc --noEmit",
+              "// CLOUDFLARE SCRIPTS": "-------------------------------------------------",
+                "pages:build": "npx @cloudflare/next-on-pages@1",
+                  "pages:deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static --project-name=bltoncloudflare"
   },
   "keywords": [
     "owasp",
     "blt",
-    "bug-logging-tool",
-    "cloudflare-workers",
-    "security"
+    "nextjs",
+    "cloudflare-pages"
   ],
-  "author": "OWASP BLT Team",
-  "license": "AGPL-3.0",
+    "author": "OWASP BLT Team",
+      "license": "AGPL-3.0",
+        "dependencies": {
+    "@tanstack/react-query": "^5.56.2",
+      "axios": "^1.13.2",
+        "clsx": "^2.1.1",
+          "js-cookie": "^3.0.5",
+            "next": "^15.0.0",
+              "react": "^19.0.0",
+                "react-dom": "^19.0.0",
+                  "tailwind-merge": "^2.5.4",
+                    "zod": "^3.23.8"
+  },
   "devDependencies": {
-    "wrangler": "^3.0.0"
+    "@cloudflare/next-on-pages": "^1.13.5",
+      "@cloudflare/workers-types": "^4.20241106.0",
+        "@types/js-cookie": "^3.0.6",
+          "@types/node": "^20.0.0",
+            "@types/react": "^19.0.0",
+              "autoprefixer": "^10.4.20",
+                "eslint": "^9.0.0",
+                  "eslint-config-next": "15.0.0",
+                    "postcss": "^8.4.47",
+                      "tailwindcss": "^3.4.14",
+                        "typescript": "^5.6.0",
+                          "wrangler": "^4.61.0"
+  },
+  "engines": {
+    "node": ">=20.18.1",
+      "npm": ">=9.0.0"
   }
 }

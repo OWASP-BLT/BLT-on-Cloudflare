@@ -32,3 +32,7 @@ Thumbs.db
 
 # Build output
 dist/
+.next/
+.vercel/
+.open-next/
+out/

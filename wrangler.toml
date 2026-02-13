@@ -1,3 +1,9 @@
-name = "blt-on-cloudflare"
-compatibility_date = "2024-01-01"
-pages_build_output_dir = "./public"
+# Project Name
+name = "bltoncloudflare"
+
+# Compatibility settings (REQUIRED for Next.js)
+compatibility_date = "2025-09-15"
+compatibility_flags = ["nodejs_compat"]
+
+# PAGES CONFIGURATION
+pages_build_output_dir = ".vercel/output/static"
