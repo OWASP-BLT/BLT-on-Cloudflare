@@ -543,9 +543,9 @@ export const HEADER_TEMPLATE = `
     </nav>
 
     <!-- Chatbot -->
-    <div class="bg-gray-100 chat-Zindex z-[9999]">
+    <div class="bg-gray-100">
         <div id="chatbot"
-             class="fixed bottom-3 right-3 max-w-[400px] w-full bg-white rounded-lg shadow-lg h-[520px] overflow-hidden hidden">
+             class="fixed bottom-3 right-3 max-w-[400px] w-full bg-white rounded-lg shadow-lg h-[520px] overflow-hidden hidden z-[10000]">
             <div class="bg-red-600 text-white p-3 rounded-t-lg flex justify-between items-center">
                 <h3 class="text-xl font-bold">Chat with BLT Bot</h3>
                 <button id="closeChatbot" class="text-white text-2xl">×</button>
@@ -596,7 +596,7 @@ export const HEADER_TEMPLATE = `
             </div>
         </div>
         <div id="chatIcon"
-             class="fixed bottom-3 right-2 bg-red-600 rounded-full p-3 w-[55px] h-[55px] flex items-center justify-center cursor-pointer shadow-lg hover:opacity-80 transition-opacity">
+             class="fixed bottom-3 right-2 bg-red-600 rounded-full p-3 w-[55px] h-[55px] flex items-center justify-center cursor-pointer shadow-lg hover:opacity-80 transition-opacity z-[10000]">
             <svg class="w-10 h-10 text-white"
                  aria-hidden="true"
                  xmlns="http://www.w3.org/2000/svg"
