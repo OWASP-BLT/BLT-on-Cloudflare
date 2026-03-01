@@ -14,6 +14,11 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
     <title>Home - Bug Logging Tool</title>
     <meta name="description" content="Welcome to OWASP Bug Logging Tool, a platform to report bugs, earn rewards, and help secure the web through community-driven collaboration.">
     <meta name="keywords" content="Bug Logging Tool, OWASP, security, bug reporting, rewards, open source, community, web security, contributions">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Home - Bug Logging Tool">
@@ -34,7 +39,7 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50" style="font-family: 'Inter', sans-serif;">
     <!-- Sidebar -->
     ${SIDEBAR_TEMPLATE}
 
