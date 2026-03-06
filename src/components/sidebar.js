@@ -4,7 +4,7 @@
  */
 
 export const SIDEBAR_TEMPLATE = `
-    <div class="sidebar fixed left-0 top-18 h-[calc(100vh-4rem)] bg-white border-r border-gray-300 transform -translate-x-full transition-all duration-300 ease-in-out z-[8888] w-[380px] shadow-md">
+    <div class="sidebar fixed left-0 top-18 h-[calc(100vh-4rem)] bg-white dark:bg-gray-900 border-r border-gray-300 dark:border-gray-700 transform -translate-x-full transition-all duration-300 ease-in-out z-[8888] w-[380px] shadow-md">
         <div class="h-full flex flex-col justify-between overflow-hidden">
             <div class="overflow-y-auto flex-grow py-2 scrollbar-none">
                 <!-- Main Navigation -->

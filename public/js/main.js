@@ -2,6 +2,18 @@
  * BLT on Cloudflare - Main JavaScript
  */
 
+document.addEventListener("DOMContentLoaded", () => {
+  const htmlElement = document.documentElement;
+
+  document.addEventListener("click", (event) => {
+    const toggleButton = event.target.closest("#theme-toggle");
+    if (toggleButton) {
+      const isDark = htmlElement.classList.toggle("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+  });
+});
+
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {

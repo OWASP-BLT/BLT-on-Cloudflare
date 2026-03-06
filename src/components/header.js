@@ -4,7 +4,7 @@
  */
 
 export const HEADER_TEMPLATE = `
-    <nav class="fixed top-0 z-[9999] w-full bg-white/80 backdrop-blur-md border-zinc-200 border-b md:px-4 md:py-1.5 py-2 px-1">
+    <nav class="fixed top-0 z-[9999] w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-zinc-200 dark:border-gray-700 border-b md:px-4 md:py-1.5 py-2 px-1 transition-colors duration-300">
         <div class="px-3 py-1 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
                 <div class="flex md:gap-4 gap-0 items-center justify-start rtl:justify-end">
@@ -505,6 +505,17 @@ export const HEADER_TEMPLATE = `
                 </button>
                 <!-- Sign up and Log in Buttons (for non-authenticated state) -->
                 <div class="flex items-center">
+                    <div class="hidden ml-4 md:block">
+                        <button id="theme-toggle"
+                                class="relative inline-flex items-center justify-center p-2 text-[#e74c3c] dark:text-[#e74c3c] border-2 border-[#e74c3c] dark:border-[#e74c3c] rounded-lg hover:bg-[#e74c3c] dark:hover:bg-red-600 hover:text-white dark:hover:text-white w-10 h-10 transition-colors"
+                                aria-label="Toggle dark mode"
+                                type="button">
+                            <i id="sun-icon"
+                               class="fas fa-sun text-xl absolute transition-all duration-300 ease-in-out opacity-0 -rotate-90 dark:opacity-100 dark:rotate-0"></i>
+                            <i id="moon-icon"
+                               class="fas fa-moon text-xl absolute transition-all duration-300 ease-in-out opacity-100 rotate-0 dark:opacity-0 dark:rotate-90"></i>
+                        </button>
+                    </div>
                     <div class="hidden lg:flex justify-center items-center gap-4">
                         <a href="/signup"
                            class="inline-flex select-none items-center justify-center px-3 py-2 text-red-500 border-2 border-red-500 rounded-lg hover:bg-red-500 hover:text-white font-medium transition-colors duration-200">
@@ -523,8 +534,8 @@ export const HEADER_TEMPLATE = `
             </div>
         </div>
         <!-- Mobile Search Bar -->
-        <div id="mobile-search"
-             class="hidden sm:hidden md:hidden lg:hidden w-full px-4 py-3 bg-white border-t border-gray-200">
+           <div id="mobile-search"
+               class="hidden sm:hidden md:hidden lg:hidden w-full px-4 py-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 transition-colors duration-300">
             <form action="/search" method="get" class="flex items-center">
                 <div class="relative flex-1">
                     <i class="fa fa-search absolute text-xl left-3 top-1/2 -translate-y-1/2 text-red-500"></i>

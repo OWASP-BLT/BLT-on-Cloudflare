@@ -26,6 +26,25 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <!-- Apply dark mode immediately to prevent white flash -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem("theme");
+
+            if (savedTheme === "dark") {
+                document.documentElement.classList.add("dark");
+            } else if (savedTheme === "light") {
+                document.documentElement.classList.remove("dark");
+            } else if (!savedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add("dark");
+            }
+        })();
+    </script>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -37,9 +56,63 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+
+        html.dark {
+            color-scheme: dark;
+        }
+
+        html.dark body {
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+
+        html.dark .bg-white {
+            background-color: #1f2937 !important;
+        }
+
+        html.dark .bg-gray-50,
+        html.dark .bg-gray-100 {
+            background-color: #111827 !important;
+        }
+
+        html.dark .text-gray-900,
+        html.dark .text-gray-800,
+        html.dark .text-black\/90,
+        html.dark .text-black\/80 {
+            color: #f3f4f6 !important;
+        }
+
+        html.dark .text-gray-700,
+        html.dark .text-gray-600,
+        html.dark .text-gray-500,
+        html.dark .text-gray-400 {
+            color: #d1d5db !important;
+        }
+
+        html.dark .border-gray-200,
+        html.dark .border-gray-300,
+        html.dark .border-zinc-200 {
+            border-color: #374151 !important;
+        }
+
+        html.dark .sidebar {
+            background-color: #1f2937;
+            border-color: #374151;
+        }
+
+        html.dark .mega-menu,
+        html.dark #mobile-search {
+            background-color: #1f2937;
+            border-color: #374151;
+        }
+
+        html.dark .hover\:bg-gray-100:hover,
+        html.dark .hover\:bg-red-50:hover {
+            background-color: #374151 !important;
+        }
     </style>
 </head>
-<body class="bg-gray-50" style="font-family: 'Inter', sans-serif;">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300" style="font-family: 'Inter', sans-serif;">
     <!-- Sidebar -->
     ${SIDEBAR_TEMPLATE}
 
@@ -1044,21 +1117,21 @@ const HTML_TEMPLATE = `<!DOCTYPE html>
 </html>`;
 
 export default {
-  async fetch(request, env, ctx) {
-    const url = new URL(request.url);
-    
-    // Serve static files
-    if (url.pathname.startsWith('/css/') || 
-        url.pathname.startsWith('/js/') || 
-        url.pathname.startsWith('/images/')) {
-      return env.ASSETS.fetch(request);
-    }
-    
-    // Serve main page
-    return new Response(HTML_TEMPLATE, {
-      headers: {
-        'Content-Type': 'text/html;charset=UTF-8',
-      },
-    });
-  },
+    async fetch(request, env, ctx) {
+        const url = new URL(request.url);
+
+        // Serve static files
+        if (url.pathname.startsWith('/css/') ||
+            url.pathname.startsWith('/js/') ||
+            url.pathname.startsWith('/images/')) {
+            return env.ASSETS.fetch(request);
+        }
+
+        // Serve main page
+        return new Response(HTML_TEMPLATE, {
+            headers: {
+                'Content-Type': 'text/html;charset=UTF-8',
+            },
+        });
+    },
 };
